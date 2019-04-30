@@ -1,0 +1,51 @@
+<!-->
+/*
+ * Copyright: (C) 2015-2019 APRIL, European Commission H2020 project H2020-MSCA-ITN-2015
+ * Copyright: (C) 2019 IIT - Istituto Italiano di Tecnologia, Genova, Italy
+ * 
+ * Author: Alexandre Antunes <aleksander88@gmail.com>
+ * CopyPolicy: Released under the terms of the GNU GPL v2.0
+ *
+ */
+</!-->
+<application>
+<name>acquisition</name>
+
+<dependencies>
+    <port>/icub/camcalib/left/out</port>
+</dependencies>
+
+<module>
+    <name>dataset_acquisition</name>
+    <parameters>--robot icubSim</parameters>
+    <node>pwrNode</node>
+</module>
+
+<connection>
+    <from>/icub/camcalib/left/out</from>
+    <to>/acquisition/image:i</to>
+    <protocol>udp</protocol>
+</connection>
+<connection>
+    <from>/icubExperiments/speech:o</from>
+    <to>/acquisition/speech:i</to>
+</connection>
+<connection>
+    <from>/icubExperiments/speech:o</from>
+    <to>/acquisition/hand_ctrl:i</to>
+</connection>
+<connection>
+    <from>/acquisition/emotion:o</from>
+    <to>/icub/face/emotions/in</to>
+</connection>
+<connection>
+    <from>/acquisition/are_rpc:o</from>
+    <to>/actionsRenderingEngine/cmd:io</to>
+</connection>
+<connection>
+    <from>/acquisition/mem_rpc:o</from>
+    <to>/memory/rpc</to>
+</connection>
+
+
+</application>
